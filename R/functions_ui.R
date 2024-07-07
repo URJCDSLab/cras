@@ -14,14 +14,21 @@ mytheme <- function(){
     secondary = "#e1ebee",
     success = "#5cae6e",
     danger = "#d96363",
-    base_font = font_google("Inter"),
+    base_font = font_google("Space Mono"),
     code_font = font_google("JetBrains Mono")
   )
 }
 
+
+
+
 mymenu <- function(){
   
 }
+
+
+
+
 
 myvbs <- function(values = 1:3, 
                   icons = c("graph-up", "thermometer-sun", "handbag"),

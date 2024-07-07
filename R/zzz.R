@@ -1,4 +1,4 @@
 .onLoad <- function(libname, pkgname) {
-  resources <- system.file("app/www", package = "template.shiny.app")
+  resources <- system.file("app/www", package = "cras")
   addResourcePath("www", resources)
 }

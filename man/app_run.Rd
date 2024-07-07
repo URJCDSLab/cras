@@ -4,7 +4,7 @@
 \alias{app_run}
 \title{Run shiny application}
 \usage{
-app_run()
+app_run(port = 3838)
 }
 \description{
 Run shiny application

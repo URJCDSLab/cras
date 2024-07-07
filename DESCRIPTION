@@ -1,16 +1,23 @@
-Package: template.shiny.app
-Title: What the Package Does (One Line, Title Case)
+Package: cras
+Title: CRAS: Cybersecurity Risk analysis and Simulation Shiny app
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Emilio L.", "Cano", , "emilio.lopez@urjc.es", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6101-9755"))
+Description: a shiny app for simulating cybersecurity losses, 
+  allowing the user to choose whether to use the FAIR methodology, 
+  or modifications to it, such as different probability distributions, 
+  or modifications on the FAIR ontology. Statistical analysis of the simulation 
+  results are shown by means of interactive tables and plots.
+  From the own app, a report can be generated automatically and downloaded for further use. 
+  The report is generated in html, docx or pdf by means of a quarto document template. 
+  The app is also useful for teaching Risk Analysis in Degree courses on cybersecurity.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports:
   shiny,
   bslib,
-  bsicons
+  bsicons,
+  shinyWidgets

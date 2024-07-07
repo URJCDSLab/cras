@@ -1,0 +1,28 @@
+#img-brand{
+  padding-right: 20px;
+  width: 80px;
+}
+#img-sidebar{
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 160px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin-left: auto; 
+  margin-right: auto; 
+}
+.btn-bottom{
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 180px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.txt-sidebar{
+  font-size: 0.9em;
+  text-align: justify;
+}

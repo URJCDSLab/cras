@@ -7,6 +7,7 @@
 #' @import shiny
 #' @import bslib
 #' @import bsicons
+#' @import shinyWidgets
 #' 
 #' @export
 #'

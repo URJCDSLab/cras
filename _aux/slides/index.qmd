@@ -1,0 +1,131 @@
+---
+title: "CRAS: Cybersecurity Risk analysis and Simulation Shiny app"
+author: "Emilio L. Cano, Carmen Lancho, Víctor Aceña, Marina Cuesta, Rubén R. Fernández and Isaac Martín\n\nRey Juan Carlos University"
+institute: ""
+format: 
+  revealjs:
+    theme: moon
+---
+
+## Contents
+
+* Motivation and context
+
+* Functionality: Risk Analysis
+
+* Implementation and deployment
+
+* Conclusions
+
+
+
+## Motivation
+
+* Risk management and analysis course in the Degree in Cybersecurty Engineering.
+
+* "Legacy" powerpoints as materials.
+
+* Quantitative methods explained without any code.
+
+* The main tool was an excel file with macros
+
+
+## Context
+
+* Foundations and Aplications of Data Science Research group at Rey Juan Carlos University (Madrid), DSLAB: <https://www.datasciencelab.es>
+
+* The FAIR [model](https://www.fairinstitute.org/blog/fair-model-on-a-page#:~:text=FAIR%20is%20a%20methodology%20used,of%20risk%20in%20financial%20terms.): Factor Analysis of Information Risk, <https://www.fairinstitute.org>
+
+* The OpenFair [tool](https://blog.opengroup.org/2018/03/29/introducing-the-open-group-open-fair-risk-analysis-tool/) by the [Open Group](https://www.opengroup.org)
+
+
+# Functionality: Risk Analysis
+
+## Existing tool
+
+![](img/openfairtool.png)
+
+## CRAS shiny app
+
+* Three probability distributions (extendable)
+
+* Set seed for reproducibility
+
+*
+
+* Download simulated data for use with other tools
+
+* More intuitive workflow
+
+
+
+
+
+
+# Implementation and deployment
+
+## Implementation
+
+* Structured as a package
+
+* Multiple advantages (documentation, testing, ...)
+
+* Run in console: 
+
+`Rscript -e 'devtools::load_all();app_run()'`
+
+* Repository: <https://github.com/URJCDSLab/cras>
+
+## Deployment
+
+* Docker container
+
+* Along with other applications of our lab
+
+
+
+# Conclusions
+
+## Results
+
+* Teach and learn risk analysis with code (**R** code)
+
+* Better understand probability and simulations
+
+* Reproducibility
+
+* Data export
+
+* Interactive plots
+
+## Researching
+
+* Available packages in the field
+
+* More probability distributions
+
+* Other domains, e.g., operational risks in Finance
+
+
+
+## Future work
+
+* Multilanguage features (see <https://www.lcano.com/p/13jr/>)    
+
+* Include vignettes with documentation on the methods.
+
+* Extend to other methodologies and frameworks
+
+* Continuous integration
+
+* Testing
+
+
+
+# Thanks!
+
+[@emilopezcano](https://x.com/emilopezcano)
+
+[emilio.lopez@urjc.es](mailto:emilio.lopez@urjc.es)
+
+
