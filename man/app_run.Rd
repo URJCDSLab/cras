@@ -4,10 +4,12 @@
 \alias{app_run}
 \title{Run shiny application}
 \usage{
-app_run(port = 3838)
+app_run(.port = 3838, .host = "0.0.0.0")
 }
 \arguments{
-\item{description}{port port number}
+\item{port}{port number}
+
+\item{host}{host ip}
 }
 \value{
 the shiny app
