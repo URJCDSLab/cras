@@ -36,8 +36,6 @@ RUN gdebi --non-interactive quarto-linux-amd64.deb
 # copy necessary files
 ## app folder
 ##COPY /st-app ./st-app
-## renv.lock file
-COPY /renv.lock ./renv.lock
 ## .Renviron file
 ##COPY /.Renviron ./.Renviron
 
@@ -45,6 +43,9 @@ COPY /renv.lock ./renv.lock
 RUN Rscript -e 'install.packages("remotes")'
 RUN Rscript -e 'remotes::install_github("URJCDSLab/cras", dependencies = FALSE)'
 RUN Rscript -e 'install.packages("renv")'
+
+## renv.lock file
+COPY /renv.lock ./renv.lock
 RUN Rscript -e 'renv::restore()'
 
 ## Preparation scripts and docs
