@@ -42,7 +42,7 @@ COPY /renv.lock ./renv.lock
 
 # install renv & restore packages
 RUN Rscript -e 'install.packages("remotes")'
-RUN Rscript -e 'devtools::install_github("URJCDSLab/cras")'
+RUN Rscript -e 'remotes::install_github("URJCDSLab/cras")'
 RUN Rscript -e 'install.packages("renv")'
 RUN Rscript -e 'renv::restore()'
 
