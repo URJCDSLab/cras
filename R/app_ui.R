@@ -46,7 +46,65 @@ app_ui <- function(request){
                   style = "pill", 
                   color = "success"
                 ),
-                layout_column_wrap(card())),
+                layout_column_wrap(
+                  card(
+                    card_header("Loss Magnitude",
+                                class = "bg-dark"),
+                    layout_columns(
+                      col_widths = c(5, 7),
+                      card(
+                        numericInputIcon("ni_mag_min",
+                                         value = 0,
+                                         label = "Min", 
+                                         icon = icon("money-bill-trend-up"),
+                                         width = "150px"),
+                        numericInputIcon("ni_mag_mode",
+                                         value = 50,
+                                         label = "Most Likely", 
+                                         icon = icon("scale-balanced"),
+                                         width = "150px"),
+                        numericInputIcon("ni_mag_max",
+                                         value = 100,
+                                         label = "Max", 
+                                         icon = icon("sack-xmark"),
+                                         width = "150px")
+                      ),
+                      card(
+                        card_header("Proposed",
+                                    class = "bg-secondary"),
+                        uiOutput("ui_si_mag_new")
+                      )
+                    )
+                  ),
+                  card(
+                    card_header("Loss Event Frequency",
+                                class = "bg-dark"),
+                    layout_columns(
+                      col_widths = c(5, 7),
+                      card(numericInputIcon("ni_event_min",
+                                            value = 0,
+                                            label = "Min", 
+                                            icon = icon("money-bill-trend-up"),
+                                            width = "150px"),
+                           numericInputIcon("ni_event_mode",
+                                            value = 5,
+                                            label = "Most Likely", 
+                                            icon = icon("scale-balanced"),
+                                            width = "150px"),
+                           numericInputIcon("ni_event_max",
+                                            value =10,
+                                            label = "Max", 
+                                            icon = icon("sack-xmark"),
+                                            width = "150px")),
+                      card(card_header("Proposed",
+                                       class = "bg-secondary"),
+                           uiOutput("ui_si_event_new")
+                           
+                      )
+                    )
+                  )
+                )
+      ),
       nav_panel(title = "Results",
                 layout_sidebar(sidebar = sidebar(position = "right",
                                                  myvbs()[1],
@@ -66,10 +124,10 @@ app_ui <- function(request){
                                                   textInput("txt", NULL, "Enter input"),
                                                   title = "Input controls"
                                                 ))
-                                    ),
+                               ),
                                card("Chance of exceeding")
                 )                              
       ))
-      
-    )
+    
+  )
 }

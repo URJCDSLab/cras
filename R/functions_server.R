@@ -14,3 +14,4 @@ get_pi_distribution <- function(losstype){
                           label = "Probability distribution",
                           choices = .choices)
 }
+

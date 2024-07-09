@@ -3,5 +3,6 @@
 export(app_run)
 import(bsicons)
 import(bslib)
+import(mc2d)
 import(shiny)
 import(shinyWidgets)

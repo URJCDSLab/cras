@@ -20,4 +20,5 @@ Imports:
   shiny,
   bslib,
   bsicons,
-  shinyWidgets
+  shinyWidgets,
+  mc2d
