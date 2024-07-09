@@ -55,7 +55,7 @@ RUN Rscript -e 'remotes::install_github("URJCDSLab/cras", dependencies = FALSE)'
 #RUN Rscript '/R/render_manuals.R'
 
 # run app on container start
-CMD ["R", "-e", "cras::app_run(port = 3804)"]
+CMD ["R", "-e", "cras::app_run(.port = 3804, .host = '0.0.0.0')"]
 
 # expose port
 EXPOSE 3804
