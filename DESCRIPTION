@@ -21,4 +21,5 @@ Imports:
   bslib,
   bsicons,
   shinyWidgets,
-  mc2d
+  mc2d,
+  markdown

@@ -6,6 +6,15 @@
 \usage{
 app_run(port = 3838)
 }
+\arguments{
+\item{description}{port port number}
+}
+\value{
+the shiny app
+}
 \description{
 Run shiny application
+}
+\examples{
+app_run()
 }
