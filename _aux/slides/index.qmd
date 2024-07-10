@@ -51,15 +51,38 @@ format:
 
 * Set seed for reproducibility
 
-*
+* {bslib} for layouts
 
 * Download simulated data for use with other tools
 
 * More intuitive workflow
 
 
+## Overview
 
+![](img/1_overview.png)
 
+## Parameters
+
+![](img/2_parameters.png)
+
+## Simulation
+
+* Rely on {mc2d} for PERT and triangular distributions
+
+* Coming soon: beta and LogNormal
+
+* First simulate events
+
+* Then simulate loss of each event
+
+## Results
+
+![](img/3_results.png)
+
+## Data and report
+
+![](img/4_data.png)
 
 
 # Implementation and deployment
@@ -82,7 +105,7 @@ format:
 
 * Along with other applications of our lab
 
-
+* http://gondor.etsii.urjc.es:3804
 
 # Conclusions
 

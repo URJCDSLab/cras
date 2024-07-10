@@ -26,9 +26,9 @@ app_ui <- function(request){
                                                               "Triangular")),
                         uiOutput("ui_pi_distribution"),
                         shinyWidgets::numericInputIcon("ni_nsim",
-                                                    label = "Simulation runs",
-                                                    value = 1000,
-                                                    icon = icon("hashtag")),
+                                                       label = "Simulation runs",
+                                                       value = 1000,
+                                                       icon = icon("hashtag")),
                         shinyWidgets::textInputIcon("ti_nseed",
                                                     label = "Seed",
                                                     placeholder = "e.g., 123",
@@ -37,7 +37,17 @@ app_ui <- function(request){
                         
       ),
       nav_panel(title = "Overview",
-                includeMarkdown("inst/app/www/text/overview.md")
+                markdown("**Instructions:**
+
+1. Select the probability distributions you are using to model loss event frequency and loss magnitude.
+2. Change the number of simulations according to your preferences.
+3. Set a seed if you want the results be reproducible.
+4. Go to the **Parameters** page. Input the values for the chosen probability distributions.
+5. Run the simulations.
+6. Go to the results page to visualize the results.
+
+**NOTE**: This version also simulates PERT distribution, the rest are under development
+"),
       ),
       nav_panel(title = "Parameters",
                 shinyWidgets::actionBttn(
@@ -107,29 +117,35 @@ app_ui <- function(request){
       ),
       nav_panel(title = "Results",
                 layout_sidebar(sidebar = sidebar(position = "right",
-                                                 myvbs()[1],
-                                                 myvbs()[2],
-                                                 myvbs()[3]),
+                                                 uiOutput("vbs")),
                                shinyWidgets::radioGroupButtons(
                                  inputId = "rgb_losstype",
                                  label = "",
-                                 choices = c("Loss Magnitude", 
-                                             "Loss Event Frequency"),
+                                 choices = setNames(c("magnitude", "events"), 
+                                                    c("Loss Magnitude", 
+                                                      "Loss Event Frequency")),
                                  status = "primary",
                                  
                                ),
-                               card(card_header("Distribution",
-                                                popover(
-                                                  bsicons::bs_icon("gear"),
-                                                  textInput("txt", NULL, "Enter input"),
-                                                  title = "Input controls"
-                                                ))
+                               card(card_header("Distribution"),
+                                    plotlyOutput("pdist"),
+                                    full_screen = TRUE
+                                    # popover(
+                                    #   bsicons::bs_icon("gear"),
+                                    #   textInput("txt", NULL, "Enter input"),
+                                    #   title = "Input controls"
+                                    # )
                                ),
-                               card("Chance of exceeding")
+                               card(card_header("Chance of exceeding"),
+                                    full_screen = TRUE,
+                                    plotlyOutput("pchance"))
                 )                              
       ),
       nav_panel(title = "Data",
                 card(
+                  fill = TRUE,
+                  full_screen = TRUE,
+                  downloadButton("downloadData", "Download"),
                   dataTableOutput("dt_sim")
                 )))
     

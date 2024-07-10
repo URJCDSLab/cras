@@ -32,7 +32,7 @@ app_server <- function(input, output) {
                  } else{
                    this_seed <- NULL
                  }
-                 sim_risk(input$ni_nsim,
+                 sim(sim_risk(input$ni_nsim,
                           input$ni_event_min,
                           input$ni_event_mode,
                           input$ni_event_max,
@@ -45,9 +45,33 @@ app_server <- function(input, output) {
                           input$si_mag_new[1],
                           input$si_mag_new[2],
                           input$si_mag_new[3],
-                          this_seed)
+                          this_seed))
                })
-  output$dt_sim <- renderDataTable(
-    sim()
+  output$dt_sim <- renderDT(
+    sim() |> 
+      datatable(rownames = TRUE)
   )
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      # Use the selected dataset as the suggested file name
+      paste0("simulation.csv")
+    },
+    content = function(file) {
+      # Write the dataset to the `file` that will be downloaded
+      write.csv(sim(), file, row.names = FALSE)
+    }
+  )
+  output$pdist <- renderPlotly({
+    p <- plot_densities(sim(), 
+                        loss_type = input$rgb_losstype) 
+    ggplotly(p)
+  })
+  output$pchance <- renderPlotly({
+    p <- plot_chance(sim(), 
+                        loss_type = input$rgb_losstype) 
+    ggplotly(p)
+  })
+  output$vbs <- renderUI({
+    myvbs()
+  })
 }

@@ -25,4 +25,6 @@ Imports:
   markdown,
   DT,
   ggplot2,
-  plotly
+  plotly,
+  dplyr
+  
