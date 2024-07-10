@@ -23,4 +23,6 @@ Imports:
   shinyWidgets,
   mc2d,
   markdown,
-  DT
+  DT,
+  ggplot2,
+  plotly
