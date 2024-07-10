@@ -10,6 +10,7 @@
 #' @import bsicons
 #' @import shinyWidgets
 #' @import mc2d
+#' @import DT
 #' 
 #' @export
 #'

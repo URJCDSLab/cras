@@ -25,7 +25,7 @@ app_ui <- function(request){
                                                               "Beta",
                                                               "Triangular")),
                         uiOutput("ui_pi_distribution"),
-                        shinyWidgets::textInputIcon("ti_nsim",
+                        shinyWidgets::numericInputIcon("ni_nsim",
                                                     label = "Simulation runs",
                                                     value = 1000,
                                                     icon = icon("hashtag")),
@@ -127,7 +127,11 @@ app_ui <- function(request){
                                ),
                                card("Chance of exceeding")
                 )                              
-      ))
+      ),
+      nav_panel(title = "Data",
+                card(
+                  dataTableOutput("dt_sim")
+                )))
     
   )
 }

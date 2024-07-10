@@ -24,13 +24,30 @@ app_server <- function(input, output) {
     )
   })
   
-  sim <- reactiveValues()
+  sim <- reactiveVal()
   observeEvent(input$ab_run,
                {
-                 for (i in 1:input$ti_nsim){
-                   
+                 if(input$ti_nseed != ""){
+                   this_seed <- as.numeric(input$ti_nseed)
+                 } else{
+                   this_seed <- NULL
                  }
-                 sim$event <- rnorm(100)
-                 print(sim$event)
+                 sim_risk(input$ni_nsim,
+                          input$ni_event_min,
+                          input$ni_event_mode,
+                          input$ni_event_max,
+                          input$si_event_new[1],
+                          input$si_event_new[2],
+                          input$si_event_new[3],
+                          input$ni_mag_min,
+                          input$ni_mag_mode,
+                          input$ni_mag_max,
+                          input$si_mag_new[1],
+                          input$si_mag_new[2],
+                          input$si_mag_new[3],
+                          this_seed)
                })
+  output$dt_sim <- renderDataTable(
+    sim()
+  )
 }
