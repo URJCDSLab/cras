@@ -22,4 +22,5 @@ Imports:
   bsicons,
   shinyWidgets,
   mc2d,
-  markdown
+  markdown,
+  DT
