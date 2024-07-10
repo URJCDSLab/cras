@@ -74,7 +74,7 @@ sim_risk <- function(n, min0e, mode0e, max0e, min1e, mode1e, max1e,
                }
   )
   showNotification("Simulation finished. See the results in the next pages", 
-                   duration = 10, closeButton = TRUE)
+                   duration = 6, closeButton = FALSE)
   return(data.frame(situation = rep(c("current", "proposed"), each = n),
                     year = rep(1:n, 2),
                     events = c(sim_events_0, sim_events_1),
@@ -155,12 +155,13 @@ plot_chance <-  function(.data, loss_type = c("events", "magnitude")){
 
 
 myvbs <- function(values = 1:3, 
-                  icons = c("graph-up", "thermometer-sun", "handbag"),
+                  icons = c("circle-xmark", "circle-check", "handbag"),
+                  titles,
                   pos = "top right",
                   .fill = FALSE,
                   .size = "0.5em"){
   list(value_box(
-    title = "Correlation",
+    title = titles[1],
     value = values[1],
     theme = "warning",
     showcase = bsicons::bs_icon(icons[1],
@@ -169,21 +170,24 @@ myvbs <- function(values = 1:3,
     fill = .fill
   ),
   value_box(
-    title = "KPI_2",
+    title = titles[2],
     value = values[2],
-    theme = "danger",
+    theme = "success",
     showcase = bsicons::bs_icon(icons[2],
                                 size = .size),
     showcase_layout = pos,
     fill = .fill
   ),
   value_box(
-    title = "KPI_3",
+    title = titles[3],
     value = values[3],
-    theme = "success",
+    theme = "danger",
     showcase = bsicons::bs_icon(icons[3],
                                 size = .size),
     showcase_layout = pos,
     fill = .fill
   ))
 }
+# myvbs(values = 1:3, 
+#       icons = c("arrow-up", "arrow-down", "handbag"),
+#       titles = letters[1:3])

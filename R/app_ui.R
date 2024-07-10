@@ -46,7 +46,7 @@ app_ui <- function(request){
 5. Run the simulations.
 6. Go to the results page to visualize the results.
 
-**NOTE**: This version also simulates PERT distribution, the rest are under development
+**NOTE**: This version only simulates PERT distribution, the rest are under development
 "),
       ),
       nav_panel(title = "Parameters",

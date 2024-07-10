@@ -72,6 +72,15 @@ app_server <- function(input, output) {
     ggplotly(p)
   })
   output$vbs <- renderUI({
-    myvbs()
+    .title1 <- ifelse(input$rgb_losstype == "magnitude", "Average loss",
+                      "Average events")
+    .values <- sim() |> 
+      group_by(situation) |> 
+      summarise(events = round(mean(events)),
+                magnitude = round(mean(magnitude))) |>
+      pull(input$rgb_losstype)
+    myvbs(values = c(.values, 0), 
+          icons = c("arrow-up", "arrow-down", "handbag"),
+          titles = c(.title1, "Avg. Proposed", "kk"))[1:2]
   })
 }
