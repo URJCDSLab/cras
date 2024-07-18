@@ -4,7 +4,9 @@ author: "Emilio L. Cano, Carmen Lancho, Víctor Aceña, Marina Cuesta, Rubén R.
 institute: ""
 format: 
   revealjs:
-    theme: moon
+    theme: [moon, congresos.scss]
+    logo: img/DSLab_logo.png
+    footer: "useR! 2024, Salzburg 2024-07-11"
 ---
 
 ## Contents
@@ -17,7 +19,9 @@ format:
 
 * Conclusions
 
+## DISCLAIMER
 
+![](img/aguila.jpg){fig-align=center}
 
 ## Motivation
 
@@ -78,7 +82,11 @@ format:
 
 ## Results
 
-![](img/3_results.png)
+![](img/3_results_density.png)
+
+## Results
+
+![](img/3_results_chance.png)
 
 ## Data and report
 
@@ -93,9 +101,13 @@ format:
 
 * Multiple advantages (documentation, testing, ...)
 
-* Run in console: 
+* Run in terminal: 
 
 `Rscript -e 'devtools::load_all();app_run()'`
+
+* In console:
+
+`cras::app_run()`
 
 * Repository: <https://github.com/URJCDSLab/cras>
 
@@ -103,9 +115,11 @@ format:
 
 * Docker container
 
+`CMD ["R", "-e", "cras::app_run(.port = 3804, .host = '0.0.0.0')"]`
+
 * Along with other applications of our lab
 
-* http://gondor.etsii.urjc.es:3804
+* <http://gondor.etsii.urjc.es:3804>
 
 # Conclusions
 
@@ -137,6 +151,8 @@ format:
 
 * Include vignettes with documentation on the methods.
 
+* Complete FAIR ontology
+
 * Extend to other methodologies and frameworks
 
 * Continuous integration
@@ -145,10 +161,17 @@ format:
 
 
 
-# Thanks!
+# Thanks! 
 
-[@emilopezcano](https://x.com/emilopezcano)
 
-[emilio.lopez@urjc.es](mailto:emilio.lopez@urjc.es)
 
+[http://emilio.lcano.com](https://emilio.lcano.com)
+
+[emilio.lopez@urjc.es]{.red}
+
+Slides: [emilio.lcano.com/p/user2024](http://emilio.lcano.com/p/user2024/)
+
+\
+
+Questions
 

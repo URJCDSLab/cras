@@ -347,6 +347,10 @@ Rey Juan Carlos University
 <li><p>Conclusions</p></li>
 </ul>
 </section>
+<section id="disclaimer" class="slide level2">
+<h2>DISCLAIMER</h2>
+
+<img data-src="img/aguila.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="motivation" class="slide level2">
 <h2>Motivation</h2>
 <ul>
@@ -403,7 +407,11 @@ Rey Juan Carlos University
 <section id="results" class="slide level2">
 <h2>Results</h2>
 
-<img data-src="img/3_results.png" class="r-stretch"></section>
+<img data-src="img/3_results_density.png" class="r-stretch"></section>
+<section id="results-1" class="slide level2">
+<h2>Results</h2>
+
+<img data-src="img/3_results_chance.png" class="r-stretch"></section>
 <section id="data-and-report" class="slide level2">
 <h2>Data and report</h2>
 
@@ -418,9 +426,13 @@ Rey Juan Carlos University
 <ul>
 <li><p>Structured as a package</p></li>
 <li><p>Multiple advantages (documentation, testing, …)</p></li>
-<li><p>Run in console:</p></li>
+<li><p>Run in terminal:</p></li>
 </ul>
 <p><code>Rscript -e 'devtools::load_all();app_run()'</code></p>
+<ul>
+<li>In console:</li>
+</ul>
+<p><code>cras::app_run()</code></p>
 <ul>
 <li>Repository: <a href="https://github.com/URJCDSLab/cras" class="uri">https://github.com/URJCDSLab/cras</a></li>
 </ul>
@@ -428,9 +440,12 @@ Rey Juan Carlos University
 <section id="deployment" class="slide level2">
 <h2>Deployment</h2>
 <ul>
-<li><p>Docker container</p></li>
+<li>Docker container</li>
+</ul>
+<p><code>CMD ["R", "-e", "cras::app_run(.port = 3804, .host = '0.0.0.0')"]</code></p>
+<ul>
 <li><p>Along with other applications of our lab</p></li>
-<li><p>http://gondor.etsii.urjc.es:3804</p></li>
+<li><p><a href="http://gondor.etsii.urjc.es:3804" class="uri">http://gondor.etsii.urjc.es:3804</a></p></li>
 </ul>
 </section></section>
 <section>
@@ -438,7 +453,7 @@ Rey Juan Carlos University
 <h1>Conclusions</h1>
 
 </section>
-<section id="results-1" class="slide level2">
+<section id="results-2" class="slide level2">
 <h2>Results</h2>
 <ul>
 <li><p>Teach and learn risk analysis with code (<strong>R</strong> code)</p></li>
@@ -461,6 +476,7 @@ Rey Juan Carlos University
 <ul>
 <li><p>Multilanguage features (see <a href="https://www.lcano.com/p/13jr/" class="uri">https://www.lcano.com/p/13jr/</a>)</p></li>
 <li><p>Include vignettes with documentation on the methods.</p></li>
+<li><p>Complete FAIR ontology</p></li>
 <li><p>Extend to other methodologies and frameworks</p></li>
 <li><p>Continuous integration</p></li>
 <li><p>Testing</p></li>
@@ -468,10 +484,15 @@ Rey Juan Carlos University
 </section></section>
 <section id="thanks" class="title-slide slide level1 center">
 <h1>Thanks!</h1>
-<p><a href="https://x.com/emilopezcano"><span class="citation" data-cites="emilopezcano">@emilopezcano</span></a></p>
-<p><a href="mailto:emilio.lopez@urjc.es">emilio.lopez@urjc.es</a></p>
-<div class="footer footer-default">
+<p><a href="https://emilio.lcano.com">http://emilio.lcano.com</a></p>
+<p><span class="red">emilio.lopez@urjc.es</span></p>
+<p>Slides: <a href="http://emilio.lcano.com/p/user2024/">emilio.lcano.com/p/user2024</a></p>
+<p><br>
+</p>
+<p>Questions</p>
 
+<img src="img/DSLab_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p>useR! 2024, Salzburg 2024-07-11</p>
 </div>
 </section>
     </div>
