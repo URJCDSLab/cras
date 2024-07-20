@@ -12,7 +12,7 @@ Description: a shiny app for simulating cybersecurity losses,
   From the own app, a report can be generated automatically and downloaded for further use. 
   The report is generated in html, docx or pdf by means of a quarto document template. 
   The app is also useful for teaching Risk Analysis in Degree courses on cybersecurity.
-License: MIT + file LICENSE
+License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
@@ -27,4 +27,3 @@ Imports:
   ggplot2,
   plotly,
   dplyr
-  
