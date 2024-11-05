@@ -256,7 +256,7 @@ generate_report <- function(output_format, file, .data, input) {
                             } else {
                               NULL
                             }),
-      quiet = FALSE
+      quiet = TRUE
     )
     removeNotification(idn)
     showNotification("Report generated successfully.",
