@@ -170,7 +170,7 @@ plot_chance <- function(.data,
     xlabel <- "Loss events"
     ylabel <- "Probability of Loss or Greater"
   }
-  
+
   if (show_title) {
     p <- p + labs(title = ltitle)
   }
