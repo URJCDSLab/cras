@@ -71,7 +71,7 @@ app_server <- function(input, output) {
     )
     p <- plot_densities(sim(),
                         loss_type = input$rgb_losstype)
-    ggplotly(p)
+    ggplotly(p, tooltip = c("x", "y", "colour"))
   })
   output$pchance <- renderPlotly({
     validate(
@@ -92,9 +92,9 @@ app_server <- function(input, output) {
       summarise(events = round(mean(.data$events)),
                 magnitude = round(mean(.data$magnitude))) |>
       pull(input$rgb_losstype)
-    myvbs(values = c(.values, 0),
-          icons = c("arrow-up", "arrow-down", "handbag"),
-          titles = c(.title1, "Avg. Proposed", "kk"))[1:2]
+    myvbs(values = c(.values),
+          icons = c("arrow-up", "arrow-down"),
+          titles = c(.title1, "Avg. Proposed"))
   })
   output$down_word <- downloadHandler(
     filename = function() {

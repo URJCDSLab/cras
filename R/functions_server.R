@@ -92,7 +92,9 @@ sim_risk <- function(n, min0e, mode0e, max0e, min1e, mode1e, max1e,
 
 
 #' @export
-plot_densities <- function(.data, loss_type = c("events", "magnitude")) {
+plot_densities <- function(.data,
+                           loss_type = c("events", "magnitude"),
+                           show_title = TRUE) {
   p <- .data |>
     mutate(events = factor(.data$events)) |>
     ggplot()
@@ -104,30 +106,39 @@ plot_densities <- function(.data, loss_type = c("events", "magnitude")) {
           fill = .data$situation) +
       geom_density(alpha = 0.5) +
       scale_x_continuous(labels = scales::dollar_format())
+
     ltitle <- "Magnitude density plot"
-    x_label <- "Loss exposure"
-    y_label <- "Density"
+    xlabel <- "Loss exposure"
+    ylabel <- "Density"
   } else if (loss_type[1] == "events") {
     p <- p +
       aes(x = .data$events,
           col = .data$situation,
           fill = .data$situation) +
-      geom_bar(position = position_dodge())
-    scale_color_discrete(drop = FALSE)
-    ltitle <- "Amount of years per amount of events"
-    x_label <- "Events"
-    y_label <- "Count"
+      geom_bar(position = position_dodge()) +
+      scale_color_discrete(drop = FALSE)
+
+    ltitle <- "Amount of years per number of annual events"
+    xlabel <- "Events"
+    ylabel <- "Count"
+  }
+
+  if (show_title) {
+    p <- p + labs(title = ltitle)
   }
   p +
     theme_bw() +
-    labs(title = ltitle,
-         x = x_label,
-         y = y_label)
+    labs(x = xlabel,
+         y = ylabel,
+         color = "Situation",
+         fill = "Situation")
 }
 
 
 #' @export
-plot_chance <- function(.data, loss_type = c("events", "magnitude")) {
+plot_chance <- function(.data,
+                        loss_type = c("events", "magnitude"),
+                        show_title = TRUE) {
   gdata <- data.frame(loss = round(by(.data[[loss_type]],
                                       .data[["situation"]],
                                       quantile, seq(0, 1, by = 0.01)) |>
@@ -140,26 +151,35 @@ plot_chance <- function(.data, loss_type = c("events", "magnitude")) {
     aes(x = .data$loss,
         y = .data$perc,
         col = .data$situation) +
-    geom_line() +
-    theme_bw()
+    geom_line()
 
   if (loss_type[1] == "magnitude") {
     p <- p +
-      labs(title = "Annualized Loss Exceedance Chart (LEC)",
-           x = "Loss exposure",
-           y = "Probability of Loss or Greater") +
       scale_x_continuous(labels = scales::dollar_format()) +
       scale_y_continuous(labels = scales::percent_format(scale = 1))
+
+    ltitle <- "Annualized Loss Exceedance Chart (LEC)"
+    xlabel <- "Loss exposure"
+    ylabel <- "Probability of Loss or Greater"
   } else if (loss_type[1] == "events") {
     p <- p +
-      labs(title = "Annualized chance of exceeding loss events",
-           x = "Loss events",
-           y = "Probability of Loss or Greater") +
       scale_x_continuous(breaks = scales::breaks_pretty()) +
       scale_y_continuous(labels = scales::percent_format(scale = 1))
-  }
 
-  p
+    ltitle <- "Annualized chance of exceeding loss events"
+    xlabel <- "Loss events"
+    ylabel <- "Probability of Loss or Greater"
+  }
+  
+  if (show_title) {
+    p <- p + labs(title = ltitle)
+  }
+  p +
+    theme_bw() +
+    labs(x = xlabel,
+         y = ylabel,
+         color = "Situation",
+         fill = "Situation")
 }
 
 
@@ -169,8 +189,9 @@ plot_chance <- function(.data, loss_type = c("events", "magnitude")) {
 # plot_densities(simdata, loss_type = "magnitude")
 
 
-myvbs <- function(values = 1:3,
-                  icons = c("circle-xmark", "circle-check", "handbag"),
+#' @export
+myvbs <- function(values = 1:2,
+                  icons = c("circle-xmark", "circle-check"),
                   titles,
                   pos = "top right",
                   .fill = FALSE,
@@ -192,24 +213,16 @@ myvbs <- function(values = 1:3,
                                 size = .size),
     showcase_layout = pos,
     fill = .fill
-  ),
-  value_box(
-    title = titles[3],
-    value = values[3],
-    theme = "danger",
-    showcase = bsicons::bs_icon(icons[3],
-                                size = .size),
-    showcase_layout = pos,
-    fill = .fill
   ))
 }
-# myvbs(values = 1:3,
-#       icons = c("arrow-up", "arrow-down", "handbag"),
-#       titles = letters[1:3])
+# myvbs(values = 1:2,
+#       icons = c("arrow-up", "arrow-down"),
+#       titles = letters[1:2])
 
 
 generate_report <- function(output_format, file, .data, input) {
-  ifile <- system.file("app", "template_report.qmd", package = "cras")
+  ifile <- system.file(paste0("template_report_", output_format, ".qmd"),
+                       package = "cras")
   ofile <- paste0("simulation_", format(Sys.time(), "%Y-%m-%d_%H%M%S"),
                   ".", output_format)
   idn <- showNotification("Please wait while the report is being generated.

@@ -147,21 +147,21 @@ app_ui <- function(request) {
                            style = "material-circle",
                            color = "success",
                            size = "sm") |>
-                tooltip("Download a report in PDF format"),
+                tooltip("Download a DOCX report"),
               downloadBttn("down_pdf",
                            icon = bs_icon("file-earmark-pdf"),
                            label = NULL,
                            style = "material-circle",
                            color = "success",
                            size = "sm") |>
-                tooltip("Download a report in PDF format"),
+                tooltip("Download a PDF report"),
               downloadBttn("down_html",
                            icon = bs_icon("filetype-html"),
                            label = NULL,
                            style = "material-circle",
                            color = "success",
                            size = "sm") |>
-                tooltip("Download a report in HTML format")
+                tooltip("Download an HTML report")
             )
           ),
           card(

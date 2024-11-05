@@ -18,6 +18,12 @@
 
 - Translation folder (if multilanguage)
 
+> [!IMPORTANT]
+> In order for the HTML to be generated with the embedded resources, the
+> template `template_report_html.qmd` must be in the root of the package.
+>
+> Read [quarto-dev/quarto-cli/discussions/4041](https://github.com/quarto-dev/quarto-cli/discussions/4041) for details.
+
 ## My development workflow
 
 - Use functions for rendering outputs and even for producing ui elements.
