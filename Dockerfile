@@ -40,13 +40,13 @@ RUN gdebi --non-interactive quarto-linux-amd64.deb
 ##COPY /.Renviron ./.Renviron
 
 # install renv & restore packages
-RUN Rscript -e 'install.packages("remotes")'
 RUN Rscript -e 'install.packages("renv")'
 
 ## renv.lock file
 COPY /renv.lock ./renv.lock
 COPY / .
 RUN Rscript -e 'renv::restore()'
+RUN Rscript -e 'install.packages("remotes")'
 RUN Rscript -e 'remotes::install_local(dependencies = FALSE, upgrade = "never")'
 
 ## Preparation scripts and docs
