@@ -45,6 +45,7 @@ RUN Rscript -e 'install.packages("renv")'
 
 ## renv.lock file
 COPY /renv.lock ./renv.lock
+COPY / .
 RUN Rscript -e 'renv::restore()'
 RUN Rscript -e 'remotes::install_local(dependencies = FALSE, upgrade = "never")'
 
