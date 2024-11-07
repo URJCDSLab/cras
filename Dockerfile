@@ -46,7 +46,7 @@ RUN Rscript -e 'install.packages("renv")'
 ## renv.lock file
 COPY /renv.lock ./renv.lock
 RUN Rscript -e 'renv::restore()'
-RUN Rscript -e 'remotes::install_local("URJCDSLab/cras", dependencies = FALSE, upgrade = "never")'
+RUN Rscript -e 'remotes::install_local(dependencies = FALSE, upgrade = "never")'
 
 ## Preparation scripts and docs
 #COPY /R ./R
