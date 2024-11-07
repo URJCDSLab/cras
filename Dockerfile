@@ -16,6 +16,8 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libgdal-dev \
     libglpk-dev \
     libmagick++-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
     pandoc \
     pandoc-citeproc \
     curl \
@@ -27,11 +29,16 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean
 
+# Create app folder
+RUN mkdir -p /app
+WORKDIR /app
+
 # Install quarto
-ARG QUARTO_VERSION="1.4.553"
+ARG QUARTO_VERSION="1.6.33"
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
 # RUN curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
 RUN gdebi --non-interactive quarto-linux-amd64.deb
+RUN quarto install tinytex
 
 # copy necessary files
 ## app folder
@@ -39,15 +46,20 @@ RUN gdebi --non-interactive quarto-linux-amd64.deb
 ## .Renviron file
 ##COPY /.Renviron ./.Renviron
 
-# install renv & restore packages
+# install devtools & renv packages
+RUN Rscript -e 'install.packages("devtools")'
 RUN Rscript -e 'install.packages("renv")'
 
-## renv.lock file
+# Copy renv.lock & restore
 COPY /renv.lock ./renv.lock
-COPY / .
 RUN Rscript -e 'renv::restore()'
-RUN Rscript -e 'install.packages("remotes")'
-RUN Rscript -e 'remotes::install_local(dependencies = FALSE, upgrade = "never")'
+
+# Copy package necessary files
+COPY DESCRIPTION NAMESPACE ./
+COPY R/ R/
+COPY data/ data/
+COPY inst inst/
+RUN Rscript -e 'library(devtools); install_local(".", build = TRUE, upgrade="never")'
 
 ## Preparation scripts and docs
 #COPY /R ./R
@@ -59,6 +71,4 @@ RUN Rscript -e 'remotes::install_local(dependencies = FALSE, upgrade = "never")'
 CMD ["R", "-e", "cras::app_run(.port = 3804, .host = '0.0.0.0')"]
 
 # expose port
-EXPOSE 3804
-
-
+EXPOSE 3804/tcp
