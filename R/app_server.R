@@ -112,12 +112,12 @@ app_server <- function(input, output) {
       generate_report("pdf", file, sim(), input)
     }
   )
-  output$down_html <- downloadHandler(
-    filename = function() {
-      paste0("simulation_", format(Sys.time(), "%Y-%m-%d_%H%M%S"), ".html")
-    },
-    content = function(file) {
-      generate_report("html", file, sim(), input)
-    }
-  )
+  # output$down_html <- downloadHandler(
+  #   filename = function() {
+  #     paste0("simulation_", format(Sys.time(), "%Y-%m-%d_%H%M%S"), ".html")
+  #   },
+  #   content = function(file) {
+  #     generate_report("html", file, sim(), input)
+  #   }
+  # )
 }

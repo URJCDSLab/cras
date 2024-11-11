@@ -141,13 +141,6 @@ app_ui <- function(request) {
             ),
             div(
               class = "col-btn-title",
-              downloadBttn("down_word",
-                           icon = bs_icon("file-earmark-word"),
-                           label = NULL,
-                           style = "material-circle",
-                           color = "success",
-                           size = "sm") |>
-                tooltip("Download a DOCX report"),
               downloadBttn("down_pdf",
                            icon = bs_icon("file-earmark-pdf"),
                            label = NULL,
@@ -155,13 +148,20 @@ app_ui <- function(request) {
                            color = "success",
                            size = "sm") |>
                 tooltip("Download a PDF report"),
-              downloadBttn("down_html",
-                           icon = bs_icon("filetype-html"),
+              # downloadBttn("down_html",
+              #              icon = bs_icon("filetype-html"),
+              #              label = NULL,
+              #              style = "material-circle",
+              #              color = "success",
+              #              size = "sm") |>
+              #   tooltip("Download an HTML report"),
+              downloadBttn("down_word",
+                           icon = bs_icon("file-earmark-word"),
                            label = NULL,
                            style = "material-circle",
                            color = "success",
                            size = "sm") |>
-                tooltip("Download an HTML report")
+                tooltip("Download a DOCX report"),
             )
           ),
           card(
