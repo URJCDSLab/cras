@@ -61,6 +61,7 @@ reports/*pdf
 ## Folder OS specific info
 **/.DS_Store
 **/desktop.ini
+**._*
 
 ## MS Office lock files
 **/~$*

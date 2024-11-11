@@ -1,29 +1,64 @@
 Package: cras
 Title: CRAS: Cybersecurity Risk analysis and Simulation Shiny app
 Version: 0.0.0.9000
-Authors@R: 
-    person("Emilio L.", "Cano", , "emilio.lopez@urjc.es", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-6101-9755"))
-Description: a shiny app for simulating cybersecurity losses, 
-  allowing the user to choose whether to use the FAIR methodology, 
-  or modifications to it, such as different probability distributions, 
-  or modifications on the FAIR ontology. Statistical analysis of the simulation 
+Authors@R: c(
+    person(given = "Emilio L.",
+           family = "Cano",
+           email = "emilio.lopez@urjc.es",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6101-9755")),
+    person(given = "Javier",
+           family = "Sánchez García-Ochoa",
+           email = "javier.garciaochoa@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0009-0003-3137-6174")),
+    person(given = "Carmen",
+           family = "Lancho",
+           email = "carmen.lancho@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-4674-1598")),
+    person(given = "Victor",
+           family = "Aceña Gil",
+           email = "victor.acena@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0000-0003-1838-2150")),
+    person(given = "Marina",
+           family = "Cuesta Santa Teresa",
+           email = "marina.cuesta@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-1880-9225")),
+    person(given = "Rubén",
+           family = "Rodriguez Fernández",
+           email = "ruben.rodriguez@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-4140-1551")),
+    person(given = "Isaac",
+           family = "Martín de Diego",
+           email = "isaac.martin@urjc.es",
+           role = "ctb",
+           comment = c(ORCID = "0000-0001-5197-2932"))
+    )
+Description: a shiny app for simulating cybersecurity losses,
+  allowing the user to choose whether to use the FAIR methodology,
+  or modifications to it, such as different probability distributions,
+  or modifications on the FAIR ontology. Statistical analysis of the simulation
   results are shown by means of interactive tables and plots.
-  From the own app, a report can be generated automatically and downloaded for further use. 
-  The report is generated in html, docx or pdf by means of a quarto document template. 
+  From the own app, a report can be generated automatically and downloaded for further use.
+  The report is generated in html, docx or pdf by means of a quarto document template.
   The app is also useful for teaching Risk Analysis in Degree courses on cybersecurity.
 License: CC BY-NC-SA 4.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports:
-  shiny,
   bslib,
   bsicons,
-  shinyWidgets,
-  mc2d,
-  markdown,
+  dplyr,
   DT,
   ggplot2,
+  markdown,
+  mc2d,
   plotly,
-  dplyr
+  scales,
+  shiny,
+  shinyWidgets

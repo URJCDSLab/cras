@@ -4,7 +4,7 @@
 ## - Generate inputs, e.g., from config
 
 
-mytheme <- function(){
+mytheme <- function() {
   bs_theme(
     bg = "#FFF",
     fg = "#001F66",
@@ -18,15 +18,3 @@ mytheme <- function(){
     code_font = font_google("JetBrains Mono")
   )
 }
-
-
-
-
-mymenu <- function(){
-  
-}
-
-
-
-
-

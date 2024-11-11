@@ -1,0 +1,156 @@
+---
+title: "Cybersecurity Risk Analysis and Simulation"
+subtitle: "Simulation report"
+date: now
+date-format: "MMM D, YYYY HH:mm:ss"
+format: docx
+params:
+  pi_mag_distribution: "PERT"
+  pi_event_distribution: "PERT"
+  ni_nsim: 1000
+  ni_event_old_min: 0
+  ni_event_old_mode: 50
+  ni_event_old_max: 100
+  si_event_new_min: 0
+  si_event_new_mode: 50
+  si_event_new_max: 100
+  ni_mag_old_min: 0
+  ni_mag_old_mode: 5
+  ni_mag_old_max: 10
+  si_mag_new_min: 0
+  si_mag_new_mode: 5
+  si_mag_new_max: 10
+  nseed: NULL
+  sim_data: NULL
+knitr:
+  opts_chunk:
+    echo: false
+    message: false
+    warning: false
+---
+
+```{r}
+#| include: false
+library(cras)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(tidyr)
+```
+
+```{r}
+data <- data.frame(params$sim_data)
+```
+
+## Parameters
+
+```{r}
+#| results: 'asis'
+
+tibble(
+  Parameter = c("Annual Events", "Annual Events", "Loss Magnitude per Event",
+                "Loss Magnitude per Event"),
+  Situation = c("Current", "Proposed", "Current", "Proposed"),
+  Min = c(params$ni_event_old_min, params$si_event_new_min,
+          params$ni_mag_old_min, params$si_mag_new_min),
+  `Most Likely` = c(params$ni_event_old_mode, params$si_event_new_mode,
+                    params$ni_mag_old_mode, params$si_mag_new_mode),
+  Max = c(params$ni_event_old_max, params$si_event_new_max,
+          params$ni_mag_old_max, params$si_mag_new_max)
+) |>
+  knitr::kable(caption = "Input Parameters for Event Frequency and Loss
+               Magnitude")
+```
+
+The loss magnitude distribution was a `{r} params$pi_mag_distribution`, the loss
+event frequency distribution was a `{r} params$pi_event_distribution` and the simulation was run for `{r} params$ni_nsim` iterations.
+This simulation `{r} ifelse(is.null(params$nseed), "didn't use a seed", paste("used the seed", params$nseed))`.
+
+## Loss Magnitude
+
+```{r}
+.avg_loss <- data |>
+  group_by(.data$situation) |>
+  summarise(events = round(mean(.data$events)),
+            magnitude = round(mean(.data$magnitude))) |>
+  pull("magnitude")
+
+tibble(
+  Metric = c("Average current loss magnitude", "Average proposed loss magnitude"),
+  Value = c(.avg_loss[1], .avg_loss[2])
+) %>%
+  knitr::kable(caption = "Average loss magnitude comparison")
+```
+
+@Fig-loss-density shows the density distribution of loss magnitude in the simulation.
+
+```{r}
+#| fig-height: 3
+#| fig-align: 'center'
+#| fig-cap: "Magnitude density plot"
+#| label: "fig-loss-density"
+#| out-width: "95%"
+cras::plot_densities(data, loss_type = "magnitude", show_title = FALSE) +
+  scale_color_manual(values = c("#fab117", "#5cae6e")) +
+  scale_fill_manual(values = c("#fab117", "#5cae6e")) + 
+  theme(legend.position = "none")
+```
+
+@Fig-loss-exceedance shows the annualized Loss Exceedance Chart (LEC), which represents the probability of exceeding different loss amounts.
+
+```{r}
+#| fig-height: 3
+#| fig-align: 'center'
+#| fig-cap: "Annualized Loss Exceedance Chart (LEC)"
+#| label: "fig-loss-exceedance"
+#| out-width: "95%"
+cras::plot_chance(data, loss_type = "magnitude", show_title = FALSE) +
+  scale_color_manual(values = c("#fab117", "#5cae6e")) +
+  scale_fill_manual(values = c("#fab117", "#5cae6e")) + 
+  theme(legend.position = "none")
+```
+
+## Loss Events Frequency
+
+```{r}
+.avg_events <- data |>
+  group_by(.data$situation) |>
+  summarise(events = round(mean(.data$events)),
+            magnitude = round(mean(.data$magnitude))) |>
+  pull("events")
+
+tibble(
+  Metric = c("Average current loss events", "Average proposed loss events"),
+  Value = c(.avg_events[1], .avg_events[2])
+) %>%
+  knitr::kable(caption = "Average loss events comparison")
+```
+
+@Fig-events-density shows the density distribution of loss events in the simulation, which means the amount of years in which each possible amount of events is observed.
+
+```{r}
+#| fig-height: 3
+#| fig-align: 'center'
+#| fig-cap: "Amount of years per number of annual events"
+#| label: "fig-events-density"
+#| out-width: "100%"
+cras::plot_densities(data, loss_type = "events", show_title = FALSE) +
+  scale_color_manual(values = c("#fab117", "#5cae6e")) +
+  scale_fill_manual(values = c("#fab117", "#5cae6e")) + 
+  theme(legend.position = "none")
+```
+
+
+@Fig-events-exceedance shows the probability of exceeding different amount of events in the simulation.
+
+```{r}
+#| fig-height: 3
+#| fig-align: 'center'
+#| fig-cap: "Annualized chance of exceeding loss events"
+#| label: "fig-events-exceedance"
+#| out-width: "95%"
+cras::plot_chance(data, loss_type = "events", show_title = FALSE) +
+  scale_color_manual(values = c("#fab117", "#5cae6e")) +
+  scale_fill_manual(values = c("#fab117", "#5cae6e")) + 
+  theme(legend.position = "none")
+```

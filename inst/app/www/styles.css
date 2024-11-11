@@ -1,8 +1,9 @@
-#img-brand{
+#img-brand {
   padding-right: 20px;
   width: 80px;
 }
-#img-sidebar{
+
+#img-sidebar {
   padding-right: 10px;
   padding-left: 10px;
   width: 160px;
@@ -13,7 +14,8 @@
   margin-left: auto; 
   margin-right: auto; 
 }
-.btn-bottom{
+
+.btn-bottom {
   padding-right: 10px;
   padding-left: 10px;
   width: 180px;
@@ -22,7 +24,21 @@
   right: 20px;
 }
 
-.txt-sidebar{
+.txt-sidebar {
   font-size: 0.9em;
   text-align: justify;
+}
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.col-btn-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  height: 100%;
 }
