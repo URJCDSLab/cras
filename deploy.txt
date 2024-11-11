@@ -1,3 +1,0 @@
-docker build -t cras_img .
-docker stop cras_cont
-docker run -d --rm -p 3804:3804 --name cras_cont cras_img

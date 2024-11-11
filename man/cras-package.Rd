@@ -11,5 +11,15 @@ a shiny app for simulating cybersecurity losses, allowing the user to choose whe
 \author{
 \strong{Maintainer}: Emilio L. Cano \email{emilio.lopez@urjc.es} (\href{https://orcid.org/0000-0002-6101-9755}{ORCID})
 
+Other contributors:
+\itemize{
+  \item Javier Sánchez García-Ochoa \email{javier.garciaochoa@urjc.es} (\href{https://orcid.org/0009-0003-3137-6174}{ORCID}) [contributor]
+  \item Carmen Lancho \email{carmen.lancho@urjc.es} (\href{https://orcid.org/0000-0002-4674-1598}{ORCID}) [contributor]
+  \item Victor Aceña Gil \email{victor.acena@urjc.es} (\href{https://orcid.org/0000-0003-1838-2150}{ORCID}) [contributor]
+  \item Marina Cuesta Santa Teresa \email{marina.cuesta@urjc.es} (\href{https://orcid.org/0000-0002-1880-9225}{ORCID}) [contributor]
+  \item Rubén Rodriguez Fernández \email{ruben.rodriguez@urjc.es} (\href{https://orcid.org/0000-0002-4140-1551}{ORCID}) [contributor]
+  \item Isaac Martín de Diego \email{isaac.martin@urjc.es} (\href{https://orcid.org/0000-0001-5197-2932}{ORCID}) [contributor]
+}
+
 }
 \keyword{internal}
